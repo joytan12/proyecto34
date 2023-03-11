@@ -6,15 +6,15 @@ const Main = () => {
   return (
     <View style={styles.container}>
       {/* con button tiene un nivel de personalisacion bastante bajo  */}
-      {/* <Button
+      <Button
         onPress={() => Alert.alert('porfa lee el manga;(')}
         title="press me"
         color="#841584"
-      /> */}
+      />
       {/* el touchableOpacitY permite etiquetas de style lo cual brindo una mayor personalisacion*/}
-      {/* <TouchableOpacity style={styles.button} onPress={onPress}>
+      <TouchableOpacity style={styles.button} onPress={onPress}>
         <Text>Press Here</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
       <Text>estoy pal loli manito</Text>
       <StatusBar style="auto" />
     </View>
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// export default Main
+export default Main
