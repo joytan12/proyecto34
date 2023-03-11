@@ -1,58 +1,150 @@
-import * as React from 'react';
-import { Text, View, StyleSheet, Button, FileSystem } from 'react-native';
+// import * as React from 'react';
+// import { Text, View, StyleSheet, Button } from 'react-native';
+// import { Audio } from 'expo-av';
+// import * as FileSystem from 'expo-file-system';
+
+// const Grab = () => {
+
+//   const [recording, setRecording] = React.useState();
+
+//   async function startRecording() {
+//     try {
+//       console.log('Requesting permissions..');
+//       await Audio.requestPermissionsAsync();
+//       await Audio.setAudioModeAsync({
+//         allowsRecordingIOS: true,
+//         playsInSilentModeIOS: true,
+//       });
+
+//       console.log('Starting recording..');
+//       const { recording } = await Audio.Recording.createAsync( Audio.RecordingOptionsPresets.HIGH_QUALITY
+//       );
+//       setRecording(recording);
+//       console.log('Recording started');
+//     } catch (err) {
+//       console.error('Failed to start recording', err);
+//     }
+//   }
+
+//   async function stopRecording() {
+//     console.log('parando grabacion..');
+//     setRecording(undefined);
+//     await recording.stopAndUnloadAsync();
+//     await Audio.setAudioModeAsync({
+//       allowsRecordingIOS: false,
+//     });
+//     const uri = recording.getURI();
+//     const currentDate = new Date();
+//     const directory = FileSystem.documentDirectory;
+//     const fileName = 'grabacion ' + currentDate + '.mp3';
+//     const newUri = directory + fileName;
+//     await FileSystem.moveAsync({
+//       from: uri,
+//       to: newUri,
+//     });
+    
+//     console.log(currentDate);
+//     console.log('La grabacion a parado y se guardo en ', newUri);
+//   }
+
+//   return (
+//     <View style={styles.container}>
+//       <Button
+//         title={recording ? 'parar grabación' : 'comienza a grabar'}
+//         onPress={recording ? stopRecording : startRecording}
+//       />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     backgroundColor: '#ecf0f1',
+//     padding: 10,
+//   },
+// });
+
+// export default Grab
+
+// import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { Button, StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Audio } from 'expo-av';
-import * as FileSystem from 'expo-file-system';
+import * as Sharing from 'expo-sharing';
 
-const Grab = () => {
-
+export default function Grab() {
   const [recording, setRecording] = React.useState();
+  const [recordings, setRecordings] = React.useState([]);
+  const [message, setMessage] = React.useState("");
 
   async function startRecording() {
     try {
-      console.log('Requesting permissions..');
-      await Audio.requestPermissionsAsync();
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: true,
-        playsInSilentModeIOS: true,
-      });
+      const permission = await Audio.requestPermissionsAsync();
 
-      console.log('Starting recording..');
-      const { recording } = await Audio.Recording.createAsync( Audio.RecordingOptionsPresets.HIGH_QUALITY
-      );
-      setRecording(recording);
-      console.log('Recording started');
+      if (permission.status === "granted") {
+        await Audio.setAudioModeAsync({
+          allowsRecordingIOS: true,
+          playsInSilentModeIOS: true
+        });
+        
+        const { recording } = await Audio.Recording.createAsync(
+          Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
+        );
+
+        setRecording(recording);
+      } else {
+        setMessage("Please grant permission to app to access microphone");
+      }
     } catch (err) {
       console.error('Failed to start recording', err);
     }
   }
 
   async function stopRecording() {
-    console.log('parando grabacion..');
     setRecording(undefined);
     await recording.stopAndUnloadAsync();
-    await Audio.setAudioModeAsync({
-      allowsRecordingIOS: false,
+
+    let updatedRecordings = [...recordings];
+    const { sound, status } = await recording.createNewLoadedSoundAsync();
+    updatedRecordings.push({
+      sound: sound,
+      duration: getDurationFormatted(status.durationMillis),
+      file: recording.getURI()
     });
-    const uri = recording.getURI();
-    const currentDate = new Date();
-    const directory = FileSystem.documentDirectory;
-    const fileName = 'grabacion ' + currentDate + '.mp3';
-    const newUri = directory + fileName;
-    await FileSystem.moveAsync({
-      from: uri,
-      to: newUri,
+
+    setRecordings(updatedRecordings);
+  }
+
+  function getDurationFormatted(millis) {
+    const minutes = millis / 1000 / 60;
+    const minutesDisplay = Math.floor(minutes);
+    const seconds = Math.round((minutes - minutesDisplay) * 60);
+    const secondsDisplay = seconds < 10 ? `0${seconds}` : seconds;
+    return `${minutesDisplay}:${secondsDisplay}`;
+  }
+
+  function getRecordingLines() {
+    return recordings.map((recordingLine, index) => {
+      return (
+        <View key={index} style={styles.row}>
+          <Text style={styles.fill}>Recording {index + 1} - {recordingLine.duration}</Text>
+          <Button style={styles.button} onPress={() => recordingLine.sound.replayAsync()} title="Play"></Button>
+          <Button style={styles.button} onPress={() => Sharing.shareAsync(recordingLine.file)} title="Share"></Button>
+        </View>
+      );
     });
-    
-    console.log(currentDate);
-    console.log('La grabacion a parado y se guardo en ', newUri);
   }
 
   return (
     <View style={styles.container}>
+      <Text>{message}</Text>
       <Button
-        title={recording ? 'parar grabación' : 'comienza a grabar'}
-        onPress={recording ? stopRecording : startRecording}
-      />
+        title={recording ? 'Stop Recording' : 'Start Recording'}
+        onPress={recording ? stopRecording : startRecording} />
+      {getRecordingLines()}
+      <StatusBar style="auto" />
     </View>
   );
 }
@@ -60,10 +152,20 @@ const Grab = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 10,
   },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  fill: {
+    flex: 1,
+    margin: 16
+  },
+  button: {
+    margin: 16
+  }
 });
-
-export default Grab
