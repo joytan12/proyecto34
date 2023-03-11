@@ -1,6 +1,6 @@
 import React from 'react'
 import Main from './src/components/Main.jsx'
-import Grab from './src/components/Grabadora.jsx'
+import Grab from './src/components/grabadora.jsx'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
 
