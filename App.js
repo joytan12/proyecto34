@@ -1,5 +1,6 @@
 import React from 'react'
 import Main from './src/components/Main.jsx'
+import Grab from './src/components/Grabadora.jsx'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
 
@@ -8,6 +9,7 @@ export default function app() {
   return (
     <View style={styles.container}>
       <Main />
+      <Grab />
       <StatusBar style="auto"/>
     </View>
   );
