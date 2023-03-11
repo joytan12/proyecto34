@@ -5,13 +5,13 @@ import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-na
 
 
 export default function app() {
-    return (
-      <View style={styles.container}>
-        <Text>hola mundo</Text>
-        {/* <Main /> */}
-        <StatusBar style="auto"/>
-      </View>
-    );
+  return (
+    <View style={styles.container}>
+      <Text>hola mundo</Text>
+      <Main />
+      <StatusBar style="auto"/>
+    </View>
+  );
 }
 
 // import { StatusBar } from 'expo-status-bar';
