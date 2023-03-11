@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Login from './src/components/main.jsx';
 import Grab from './src/components/grabadora.jsx'
 import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
 import Login from './src/components/style.jsx';
@@ -8,7 +8,6 @@ import Login from './src/components/style.jsx';
 export default function app() {
   return (
     <View style={styles.container}>
-      {/*<Main />*/}
       <Login />
     </View>
   );

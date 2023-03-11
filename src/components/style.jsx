@@ -3,7 +3,7 @@ import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import { useEffect, useState } from 'react';
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Main from "../components/Main.jsx";
+import Main from "./main.jsx";
 
 // import Main from './src/components/Main.jsx'
 
