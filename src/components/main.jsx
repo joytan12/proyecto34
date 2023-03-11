@@ -1,6 +1,7 @@
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
+import Menu from './menu';
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 
 WebBrowser.maybeCompleteAuthSession();
@@ -36,34 +37,35 @@ export default function App() {
     if(user) {
       return(
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Text style={{fontSize: 35, fontWeight: 'bold', marginBottom: 20}}>Welcome</Text>
+          <Menu/>
+          <Text style={{fontSize: 35, fontWeight: 'bold', marginBottom: 20}}>Bienvenido</Text>
           <Image source={{uri: user.picture}} style={{width: 100, height: 100, borderRadius: 50}} />
           <Text style={{fontSize: 20, fontWeight: 'bold'}}>{user.name}</Text>
         </View>
+        
       )
+    
     }
   } 
 
   return (
-    <ImageBackground source={imagenAvion} resizeMode="cover" style={styles.container}>
+    
       <View style={styles.container}>
       {user && <ShowUserInfo />}
       {user === null &&
-        <>
+        <ImageBackground source={imagenAvion} resizeMode="cover" style={styles.container}>
           <Text style={{fontSize: 35, fontWeight: 'bold'}}>Welcome</Text>
           <Text style={{fontSize: 25, fontWeight: 'bold', marginBottom: 20, color: 'gray'}}>Please login</Text>
-        <TouchableOpacity
-          style={styles.boton}
-          disabled={!request}
-          onPress={() => {
-            promptAsync();
-          }}>
-          <Text style={styles.texto}>"La caja Negra"</Text> 
-        </TouchableOpacity>
-        </>
+          <TouchableOpacity style={styles.boton} disabled={!request} 
+            onPress={() => {
+              promptAsync();
+            }}>
+            <Text style={styles.texto}>"La caja Negra"</Text> 
+          </TouchableOpacity>
+        </ImageBackground>
       }
       </View>  
-    </ImageBackground>
+    
   );
 }
 
