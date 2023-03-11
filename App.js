@@ -1,8 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import Login from './src/components/main.jsx';
-import Grab from './src/components/grabadora.jsx'
-import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
-import Login from './src/components/style.jsx';
 
 
 export default function app() {
