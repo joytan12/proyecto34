@@ -8,10 +8,11 @@ git push \\
 git pull\\
 
 
-#intalar paquete 
+#Construir apk comandos
 
-npm install @react-navigation/native
+´´npx expo prebuild´´
 
-npx expo install react-native-screens react-native-safe-area-context
+´´eas build --platform android --profile development´´
 
-@react-navigation/native-stack
+
+
