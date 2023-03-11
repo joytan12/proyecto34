@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet, Button, FileSystem } from 'react-native';
 import { Audio } from 'expo-av';
+import * as FileSystem from 'expo-file-system';
 
 const Grab = () => {
+
   const [recording, setRecording] = React.useState();
 
   async function startRecording() {
@@ -25,20 +27,30 @@ const Grab = () => {
   }
 
   async function stopRecording() {
-    console.log('Stopping recording..');
+    console.log('parando grabacion..');
     setRecording(undefined);
     await recording.stopAndUnloadAsync();
     await Audio.setAudioModeAsync({
       allowsRecordingIOS: false,
     });
     const uri = recording.getURI();
-    console.log('Recording stopped and stored at', uri);
+    const currentDate = new Date();
+    const directory = FileSystem.documentDirectory;
+    const fileName = 'grabacion ' + currentDate + '.mp3';
+    const newUri = directory + fileName;
+    await FileSystem.moveAsync({
+      from: uri,
+      to: newUri,
+    });
+    
+    console.log(currentDate);
+    console.log('La grabacion a parado y se guardo en ', newUri);
   }
 
   return (
     <View style={styles.container}>
       <Button
-        title={recording ? 'Stop Recording' : 'Start Recording'}
+        title={recording ? 'parar grabación' : 'comienza a grabar'}
         onPress={recording ? stopRecording : startRecording}
       />
     </View>
