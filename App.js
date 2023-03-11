@@ -1,31 +1,40 @@
-// import React from 'react';
-// import Main from './src/components/Main.jsx'
-
-// export default function app() {
-//     return <Main />
-// }
-
+import React from 'react'
+import Main from './src/components/Main.jsx'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      {/*con button tiene un nivel de personalisacion bastante bajo  */}
-      <Button
-        onPress={() => Alert.alert('porfa lee el manga;(')}
-        title="press me"
-        color="#841584"
-      />
-      {/*el touchableOpacitY permite etiquetas de style lo cual brindo una mayor personalisacion*/}
-      <TouchableOpacity style={styles.button} onPress={() => Alert.alert('porfa lee el manga;(')}>
-        <Text>Press Here</Text>
-      </TouchableOpacity>
-      <Text>leete el primer cap</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+export default function app() {
+    return (
+      <View style={styles.container}>
+        <Text>hola mundo</Text>
+        {/* <Main /> */}
+        <StatusBar style="auto"/>
+      </View>
+    );
 }
+
+// import { StatusBar } from 'expo-status-bar';
+// import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
+
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+//       {/*con button tiene un nivel de personalisacion bastante bajo  */}
+//       <Button
+//         onPress={() => Alert.alert('porfa lee el manga;(')}
+//         title="press me"
+//         color="#841584"
+//       />
+//       {/*el touchableOpacitY permite etiquetas de style lo cual brindo una mayor personalisacion*/}
+//       <TouchableOpacity style={styles.button} onPress={() => Alert.alert('porfa lee el manga;(')}>
+//         <Text>Press Here</Text>
+//       </TouchableOpacity>
+//       <Text>leete el primer cap</Text>
+//       <StatusBar style="auto" />
+//     </View>
+//   );
+// }
 
 const styles = StyleSheet.create({
   container: {
