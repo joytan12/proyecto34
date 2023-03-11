@@ -8,7 +8,7 @@ import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-na
 export default function app() {
   return (
     <View style={styles.container}>
-      <Main />
+      {/*<Main />*/}
       <Grab />
       <StatusBar style="auto"/>
     </View>
