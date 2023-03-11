@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Login from './src/components/main.jsx';
+//import Login from './src/components/main.jsx';
+import Menu from './src/components/menu.jsx';
 
 
 export default function app() {
   return (
     <View style={styles.container}>
-      <Login />
+      <Menu />
     </View>
   );
 }

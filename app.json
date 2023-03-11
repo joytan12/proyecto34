@@ -31,6 +31,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "scheme": "com.toto0104.controlmacro"
   }
 }
