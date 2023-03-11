@@ -74,33 +74,6 @@ export default function Login() {
     </ImageBackground>
     
   );
-
-
-  return (
-    
-      <ImageBackground source={imagenAvion} resizeMode="cover" style={styles.container2}>
-        
-        <Text style={styles.titulo}> Bienvenido a  </Text>
-        <Text style={styles.titulo}>"La caja Negra"</Text>
-        <View>
-          {user === null ? (
-              <TouchableOpacity style={styles.boton}disabled={!request}
-              onPress={() => {
-                promptAsync();
-              }}>
-              <Text style={styles.texto}>"La caja Negra"</Text> 
-            </TouchableOpacity>
-          ) : (
-            <View style={{flex:1}}>
-              <Text style={{fontSize:35, fontWeight:"bold"}}>Holi compadre {user.name}</Text>
-              <Image source={{uri: user.picture}}/>
-            </View>
-            
-          )}
-        </View>
-      </ImageBackground>
-    
-  );
 }
 
 const styles = StyleSheet.create({
