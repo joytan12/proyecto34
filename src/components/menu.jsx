@@ -1,11 +1,12 @@
 import React from 'react'
-
+import Grab from "./grabadora.jsx"
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 
 export default function Menu() {
     return (
       <View style={styles.container2}>
-        <Text>este es el menu</Text>  
+        <Text>este es el menu</Text> 
+        <Grab/>
       </View>
     );
   }
