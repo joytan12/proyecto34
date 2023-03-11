@@ -50,10 +50,10 @@ export default function App() {
 
   return (
     
-      <View style={styles.container}>
+      <View style={styles.container} resizeMode="cover">
       {user && <ShowUserInfo />}
       {user === null &&
-        <ImageBackground source={imagenAvion} resizeMode="cover" style={styles.container}>
+        <ImageBackground source={imagenAvion} style={styles.container2}>
           <Text style={{fontSize: 35, fontWeight: 'bold'}}>Welcome</Text>
           <Text style={{fontSize: 25, fontWeight: 'bold', marginBottom: 20, color: 'gray'}}>Please login</Text>
           <TouchableOpacity style={styles.boton} disabled={!request} 
@@ -73,7 +73,11 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  container2: {
+    flex: 1,
+    alignItems:"center",
     justifyContent: 'center',
   },
   titulo: {
