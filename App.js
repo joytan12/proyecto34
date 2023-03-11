@@ -1,16 +1,15 @@
 import React from 'react'
-import Main from './src/components/Main.jsx'
+
 import Grab from './src/components/grabadora.jsx'
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
+import Login from './src/components/style.jsx';
 
 
 export default function app() {
   return (
     <View style={styles.container}>
       {/*<Main />*/}
-      <Grab />
-      <StatusBar style="auto"/>
+      <Login />
     </View>
   );
 }
@@ -41,12 +40,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#222',
-    alignItems: 'center',
     justifyContent: 'center',
-    button: {
-  },
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
+    
   },
 });

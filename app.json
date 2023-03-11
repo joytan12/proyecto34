@@ -18,9 +18,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.toto0104.controlmacro"
     },
     "android": {
+      "package": "com.toto0104.controlmacro",
+      "bundleIdentifier": "com.toto0104.controlmacro",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
