@@ -81,7 +81,7 @@ export default function Grab({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'cyan',
     alignItems: 'center',
     justifyContent: 'center',
   },

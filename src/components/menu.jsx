@@ -22,9 +22,8 @@ const screenOptions = {
 }
 export default function Menu() {
   return (
-       <Tab.Navigator screenOptions={screenOptions} style={styles.container}>
-          <Tab.Screen 
-          style={styles.container}
+       <Tab.Navigator screenOptions={screenOptions}>
+          <Tab.Screen
           name="Home" 
           component={Grab} 
           options={{
