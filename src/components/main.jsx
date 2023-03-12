@@ -1,8 +1,7 @@
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import Menu from './menu';
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 WebBrowser.maybeCompleteAuthSession();
 const imagenAvion = require("../imagenes/caja.jpg");
