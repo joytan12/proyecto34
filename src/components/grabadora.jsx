@@ -74,7 +74,7 @@ import { Button, StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Audio } from 'expo-av';
 import * as Sharing from 'expo-sharing';
 
-export default function Grab() {
+export default function Grab({navigation}) {
   const [recording, setRecording] = React.useState();
   const [recordings, setRecordings] = React.useState([]);
   const [message, setMessage] = React.useState("");

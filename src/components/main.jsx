@@ -6,6 +6,7 @@ import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image } from
 
 WebBrowser.maybeCompleteAuthSession();
 const imagenAvion = require("../imagenes/caja.jpg");
+
 export default function App() {
   const [accessToken, setAccessToken] = React.useState(null);
   const [user, setUser] = React.useState(null);
