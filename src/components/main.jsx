@@ -7,7 +7,7 @@ import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image } from
 WebBrowser.maybeCompleteAuthSession();
 const imagenAvion = require("../imagenes/caja.jpg");
 
-export default function App() {
+export default function App({navigation}) {
   const [accessToken, setAccessToken] = React.useState(null);
   const [user, setUser] = React.useState(null);
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
@@ -36,16 +36,7 @@ export default function App() {
 
   const ShowUserInfo = () => {
     if(user) {
-      return(
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Menu/>
-          <Text style={{fontSize: 35, fontWeight: 'bold', marginBottom: 20}}>Bienvenido</Text>
-          <Image source={{uri: user.picture}} style={{width: 100, height: 100, borderRadius: 50}} />
-          <Text style={{fontSize: 20, fontWeight: 'bold'}}>{user.name}</Text>
-        </View>
-        
-      )
-    
+      navigation.navigate("Menu", {name: 'Jane'})
     }
   } 
 
