@@ -1,14 +1,22 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 //import Login from './src/components/main.jsx';
-import Menu from './src/components/menu.jsx';
+import HomeScreen from './Screens/Home.js';
+import SettingScreen from './Screens/Setting.js';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 
 export default function app() {
   return (
-    <View style={styles.container}>
-      <Menu />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} options={{title: 'Welcome'}} />
+        <Stack.Screen name="Settings" component={SettingScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
