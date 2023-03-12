@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 
 import HomeScreen from './Screens/Home.js';
 import SettingScreen from './Screens/Setting.js';
-import Grab from './src/components/grabadora';
+import Menu from './src/components/menu';
 import App from './src/components/main';
 
 import {NavigationContainer} from '@react-navigation/native';
@@ -17,10 +17,9 @@ export default function app() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} options={{title: 'Welcome'}} />
+        <Stack.Screen name="Menu" component={Menu} options={{title: 'Welcome'}} />
         <Stack.Screen name="main" component={App} options={{}}/>
         <Stack.Screen name="Settings" component={SettingScreen} />
-        <Stack.Screen name="Record" component={Grab} />
       </Stack.Navigator>
     </NavigationContainer>
   );
